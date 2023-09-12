@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the background image */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1542728928-ee495082a3c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80');
+            background-size: cover;
+            font-family: 'Lucida Handwriting';
+            font-style: italic;
+            font-size: 24px; /* Adjust the font size as needed */
+            color: black; /* Text color */
+        }
+
+        /* Custom styles for the container */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
+            padding: 20px;
+            border: 1px solid black;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Custom styles for labels and form elements */
+        label {
+            font-weight: bold;
+        }
+
+        /* Custom styles for the form */
+        form {
+            margin-top: 20px;
+        }
+
+        /* Custom styles for the navigation */
+        nav {
+            text-align: right;
+            margin: 10px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Custom styles for the heading */
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Custom styles for the submit button */
+        button[type="submit"] {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/logout">Logout</a>
+    </nav>
+    <div class="container">
+        <h2>Make your review!</h2>
+        <form action="/create/review" method="POST">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <input type="hidden" name="user_id" value="{{ logged_user.id }}">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" name="title">
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" class="form-control" name="author">
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <select class="form-control" name="genre">
+                    <option value="none">--</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Science_fiction">Science Fiction</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="review">Review:</label>
+                <textarea class="form-control" name="review"></textarea>
+            </div>             
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>

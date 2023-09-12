@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the background image */
+        body {
+            background-image: url("https://c0.wallpaperflare.com/preview/660/849/316/branch-color-design-green.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center; /* Center the contents */
+            font-family: 'Lucida Handwriting'; /* Set font family to Lucida Handwriting */
+            font-style: italic; /* Set font style to italic */
+            color: black; /* Set text color to black */
+            font-weight: bold; /* Set font weight to bold */
+        }
+
+        /* Custom styles for the form */
+        form {
+            margin-top: 20%;
+        }
+
+        /* Custom styles for the labels */
+        label {
+            font-weight: bold;
+        }
+
+        /* Custom styles for the input fields */
+        input {
+            font-weight: bold; /* Set the height of the input fields to your desired value */
+        }
+
+        /* Custom styles for the button */
+        button {
+            font-weight: bold;
+        }
+    </style>
+    <title>Sign Up</title>
+</head>
+<body>
+    <form action="/register" method="POST">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h3>Register</h3>
+        <div>
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name">
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name">
+        </div>
+        <div>
+            <label for="user_name">User Name:</label>
+            <input type="text" name="user_name">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</body>
+</html>
+

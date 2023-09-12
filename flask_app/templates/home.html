@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reviews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://villa-albertine.org/wp-content/uploads/2023/08/sincerely-media-DgQf1dUKUTM-unsplash.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #343a40;
+            font-family: 'Lucida Handwriting';
+            font-style: italic;
+        }
+        .navbar {
+            background-color: rgb(157, 183, 157);
+            color: #fff;
+        }
+        .reviews-card {
+            background-color: rgb(157, 183, 157);
+            border: 1px solid #61755f;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: row;
+        }
+        .reviews-card h3 {
+            margin-right: 10px; /* Add spacing between each h3 element */
+        }
+        .reviews-card h4 {
+            margin: 0; /* Reset margin for h4 */
+        }
+        .reviews-card .info-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* Allow each info column to take equal horizontal space */
+        }
+        .scrolling-menu {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        /* Style the "Make a review" link as a button */
+        .make-review-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(157, 183, 157);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        /* Style the column container for the links */
+        .links-column {
+            display: flex;
+            flex-direction: column;
+        }
+        /* Style the container for the "Make a review" link */
+        .make-review-container {
+            text-align: left; /* Align to the left */
+            padding: 10px; /* Add padding */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Welcome, {{logged_user.first_name}}</h1>
+    <div class="container mt-4">
+        <h2 class="mb-4">Latest Review</h2>
+        <div class="scrolling-menu">
+            {% for reviews in all_reviews %}
+            <div class="reviews-card">
+                <div class="info-column">
+                    <h3>Title:</h3>
+                    <h4>{{reviews.title}}</h4>
+                </div>
+                <div class="info-column">
+                    <h3>Author:</h3>
+                    <h4>{{reviews.author}}</h4>
+                </div>
+                <div class="info-column">
+                    <h3>Genre:</h3>
+                    <h4>{{reviews.genre}}</h4>
+                </div>
+                <div class="info-column">
+                    <h3>Review:</h3>
+                    <h4>{{reviews.user.user_name}}</h4>
+                </div>
+                <!-- Wrap the links in a container and apply flex-direction: column -->
+                <div class="links-column">
+                    <a href="/review/{{ reviews.id }}">View reviews</a>
+                    {% if reviews.user.id == logged_user.id %}
+                    <a href="/edit_review/{{ reviews.id }}">Edit</a>
+                    <form action="/delete/{{ reviews.id }}" method="POST" class="d-inline">
+                        <input type="submit" class="btn btn-link text-danger" value="Delete">
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Wrap the "Make a review" link in a container -->
+    <div class="make-review-container">
+        <a href="/add_review" class="make-review-btn">Make a review</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

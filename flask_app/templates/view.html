@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the background image */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1510172951991-856a654063f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2362&q=80');
+            background-size: contain;
+            
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Lucida Handwriting';
+            font-style: italic;
+            color: black; /* Text color */
+            padding: 20px; /* Add padding for content */
+        }
+
+        /* Custom styles for the header */
+        h1 {
+            font-size: 36px; /* Adjust the font size as needed */
+        }
+
+        /* Custom styles for the subheadings */
+        h2, h3 {
+            font-size: 24px; /* Adjust the font size as needed */
+        }
+
+        /* Custom styles for the content paragraph */
+        p {
+            font-size: 20px; /* Adjust the font size as needed */
+        }
+
+        /* Custom styles for the navigation */
+        nav {
+            text-align: right;
+            margin: 10px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/logout">Logout</a>
+    </nav>
+    <h1>{{one_review.title}} ({{one_review.author}})</h1>
+    <h2>Reviewed by: {{one_review.user_name}}</h2>
+    <h3>Date of Review: {{one_review.updated_at}}</h3>
+    <p>{{one_review.review}}</p>
+</body>
+</html>
